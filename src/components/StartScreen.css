@@ -1,0 +1,30 @@
+.start-screen {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	background-color: #ffffff; /* シンプルな白背景 */
+	color: #333; /* 濃いグレーの文字色 */
+}
+
+.start-screen h1 {
+	font-size: 2.5em;
+	color: #2980b9; /* 統一した青色でタイトルを強調 */
+}
+
+.start-screen button {
+	padding: 10px 20px;
+	margin: 10px;
+	font-size: 1.2em;
+	background-color: #2980b9; /* 青い背景のボタン */
+	color: white;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.start-screen button:hover {
+	background-color: #1f5f8b; /* ホバー時に少し暗くする */
+}

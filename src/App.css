@@ -1,38 +1,60 @@
-.App {
-  text-align: center;
+/* 共通スタイル */
+body {
+	margin: 0;
+	padding: 0;
+	font-family: Arial, sans-serif;
+	background-color: #f9f9f9; /* 全画面で淡いグレー背景 */
+	color: #333; /* 基本文字色は濃いグレー */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.App,
+.start-screen,
+.username-input-screen,
+.intro-screen,
+.game-screen {
+	text-align: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+header,
+.footer,
+.actions button {
+	font-size: 1.2em;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* ヘッダーとフッターのスタイルを上書きしないように修正 */
+.header,
+.footer {
+	height: 50px;
+	background-color: rgba(51, 51, 51, 0.5); /* 半透明の濃い背景色 */
+	color: white; /* 白い文字でコントラストを確保 */
+	padding: 0; /* パディングをリセット */
+	text-align: center; /* 中央揃え */
+	line-height: 50px; /* 縦の中央揃え */
+	position: fixed;
+	width: 100%;
+	z-index: 10;
 }
 
-.App-link {
-  color: #61dafb;
+.header {
+	top: 0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.footer {
+	bottom: 0;
+}
+
+/* ボタンの統一スタイル */
+button {
+	background-color: #2980b9; /* 一貫した青色 */
+	color: white;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	padding: 10px 20px;
+	margin: 10px;
+	transition: background-color 0.3s ease;
+}
+
+button:hover {
+	background-color: #1f5f8b; /* ホバー時の色変化も統一 */
 }

@@ -1,0 +1,25 @@
+.intro-screen {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	background-color: #ffffff; /* シンプルな白背景 */
+	color: #333; /* 濃いグレーで読みやすい文字色 */
+	text-align: center;
+	padding: 20px;
+}
+
+.intro-screen h1 {
+	font-size: 2.5em;
+	color: #2980b9; /* 統一感のある青色 */
+}
+
+.intro-screen p {
+	font-size: 1.2em;
+	margin-bottom: 20px;
+}
+
+.intro-screen:hover {
+	background-color: #f0f0f0; /* 軽いホバー効果でインタラクティブに */
+}
