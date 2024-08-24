@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/game_v1/static/css/main.6b3d7948.css",
+    "main.js": "/game_v1/static/js/main.9d78fa26.js",
+    "static/media/background_office.webp": "/game_v1/static/media/background_office.9f4eff256733b897f0af.webp",
+    "index.html": "/game_v1/index.html",
+    "main.6b3d7948.css.map": "/game_v1/static/css/main.6b3d7948.css.map",
+    "main.9d78fa26.js.map": "/game_v1/static/js/main.9d78fa26.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6b3d7948.css",
+    "static/js/main.9d78fa26.js"
+  ]
+}
