@@ -1,3 +1,14 @@
+/* StartScreenのラッパーをフレームとして定義 */
+.username-input-screen-wrapper {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	overflow: hidden; /* フレーム外の要素を隠す */
+}
+
 .username-input-screen {
 	display: flex;
 	flex-direction: column;

@@ -12,6 +12,7 @@
 
 /* 背景画像が表示されるフレーム内の要素 */
 .background-layer {
+	z-index: 1;
 	position: absolute;
 	width: 100%;
 	height: 100%;
@@ -26,35 +27,47 @@
 
 /* タイトルレイヤー */
 .title-layer {
-	position: relative;
-	top: 30%;
+	z-index: 2;
+	position: absolute;
+	bottom: 10%;
+	padding: 20px;
+	height: 15%;
 	width: 100%;
+	display: flex;
+	justify-content: left; /* 水平方向の中央揃え */
+	align-items: center; /* 垂直方向の中央揃え */
 	text-align: left;
-	z-index: 2; /* 背景より前面に表示 */
+	background-color: rgba(5, 10, 103, 0.785); /* 半透明の黒背景 */
 }
 
 .title-layer h1 {
 	font-size: 6rem;
 	font-family: "Roboto Slab", serif;
 	color: white;
-	background-color: rgba(5, 10, 103, 0.696); /* 半透明の黒背景 */
 	padding: 70px 50px;
 	border-radius: 0px;
 }
 
 /* ボタンレイヤー */
 .button-layer {
+	z-index: 3;
 	position: absolute;
-	bottom: 20%;
-	width: 100%;
-	text-align: center;
-	z-index: 2; /* 背景より前面に表示 */
+	bottom: 10%;
+	right: 0%;
+	padding: 20px; /* レイヤー内の余白 */
+	height: 15%;
+	width: 30%;
+	display: flex; /* ボタンを横並びにする */
+	justify-content: left; /* ボタンを中央に配置する */
+	align-items: center; /* ボタンを垂直方向に中央揃え */
+	gap: 40px; /* ボタン同士の間隔を設定 */
 }
 
-.start-button {
-	padding: 15px 30px;
-	font-size: 1.5rem;
-	background-color: #2980b9;
+.start-button,
+.continue-button {
+	padding: 10px 20px;
+	font-size: 2.5rem;
+	background-color: #5e63b9;
 	color: white;
 	border: none;
 	border-radius: 5px;
@@ -62,6 +75,8 @@
 	transition: background-color 0.3s ease;
 }
 
-.start-button:hover {
-	background-color: #1f5f8b;
+.start-button:hover,
+.continue-button:hover {
+	background-color: #1723f8;
+	transform: scale(1.05);
 }

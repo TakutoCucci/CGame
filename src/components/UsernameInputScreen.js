@@ -12,7 +12,7 @@ function UsernameInputScreen({ onSubmit }) {
 	};
 
 	return (
-		<div className="username-input-screen">
+		<div className="username-input-screen-wrapper">
 			<h1>ユーザー名を入力してください</h1>
 			<form onSubmit={handleSubmit}>
 				<input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="ユーザー名" />

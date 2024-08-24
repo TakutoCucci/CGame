@@ -3,7 +3,7 @@ import "./StartScreen.css";
 
 function StartScreen({ onStartNewGame, onContinueGame, hasSavedGame }) {
 	const backgroundRef = useRef(null);
-
+	hasSavedGame = true;
 	useEffect(() => {
 		let animationFrameId;
 		let start = null;
@@ -39,15 +39,11 @@ function StartScreen({ onStartNewGame, onContinueGame, hasSavedGame }) {
 
 	return (
 		<div className="start-screen-wrapper">
-			<div ref={backgroundRef} className="background-layer"></div> {/* 背景レイヤー */}
+			<div ref={backgroundRef} className="background-layer"></div>
 			<div className="title-layer">
-				{" "}
-				{/* タイトルレイヤー */}
 				<h1>The Top Consultant</h1>
 			</div>
 			<div className="button-layer">
-				{" "}
-				{/* ボタンレイヤー */}
 				<button onClick={onStartNewGame} className="start-button">
 					Start New
 				</button>
