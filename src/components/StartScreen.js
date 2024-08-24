@@ -1,12 +1,15 @@
 import React from "react";
 import "./StartScreen.css";
 
-function StartScreen({ onStartNewGame, onContinueGame, hasSavedGame }) {
+function StartScreen({ onStartNewGame }) {
 	return (
 		<div className="start-screen">
-			<h1>売れるコンサルを目指せ！</h1>
-			<button onClick={onStartNewGame}>新しいゲームを始める</button>
-			{hasSavedGame && <button onClick={onContinueGame}>前回の続きから</button>}
+			<div className="content">
+				<h1>売れるコンサルを目指せ！</h1>
+				<button onClick={onStartNewGame} className="start-button">
+					新しいゲームを始める
+				</button>
+			</div>
 		</div>
 	);
 }

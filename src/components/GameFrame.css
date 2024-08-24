@@ -1,0 +1,20 @@
+body {
+	margin: 0;
+	padding: 0;
+	height: 100vh;
+	width: 100vw;
+	background-color: #000000;
+	overflow: hidden;
+}
+
+.game-frame-wrapper {
+	background-color: transparent;
+	/*border: 2px solid red;  フレーム確認用 */
+}
+
+.game-frame-content {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	background-color: transparent;
+}
