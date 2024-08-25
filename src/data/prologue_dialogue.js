@@ -16,7 +16,12 @@ const dialogueTexts = {
 			delay: 3000
 		},
 		{
-			text: "配られた誓約書に記名欄があるから、今のうちに書いとこう。",
+			text: "しかし、あの人話長いなぁ。。",
+			autoProgress: true,
+			delay: 3000
+		},
+		{
+			text: "配られた誓約書に署名欄があるから、今のうちに書いとこう。",
 			autoProgress: false,
 			delay: 0
 		}
@@ -35,7 +40,7 @@ const dialogueTexts = {
 		{
 			text: "コンサルタントって正直、まだ何をやるのかイメージがつかないけど。。",
 			autoProgress: true,
-			delay: 2000
+			delay: 3000
 		},
 		{
 			text: "でも、大丈夫。やるしかないんだ。気合を入れていこう。",

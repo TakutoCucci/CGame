@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useContext, useCallback, useRef } from "react";
-import { GameContext } from "../context/GameContext";
+import { GameContext } from "../../context/GameContext";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import dialogueTexts from "../data/prologue_dialogue";
+import dialogueTexts from "../../data/prologue_dialogue";
 import "./Prologue.css";
+import PrologueContractModal from "./PrologueContractModal";
 
 function Prologue() {
 	const [currentPhase, setCurrentPhase] = useState("fadeIn");
@@ -14,7 +15,7 @@ function Prologue() {
 	const [waitingForClick, setWaitingForClick] = useState(false);
 	const [username, setUsername] = useState("");
 	const [dialogueLoaded, setDialogueLoaded] = useState(false);
-	const [isContractVisible, setIsContractVisible] = useState(true); // モーダルの表示管理
+	const [isContractVisible, setIsContractVisible] = useState(true);
 
 	const { updateGameState } = useContext(GameContext);
 	const navigate = useNavigate();
@@ -29,10 +30,10 @@ function Prologue() {
 
 		if (currentPhase === "dialogue") {
 			if (dialogueIndex < dialogueTexts.prologue.length - 1) {
-				setShowText(false); // テキストを一旦非表示にする
+				setShowText(false);
 				setTimeout(() => {
 					setDialogueIndex(dialogueIndex + 1);
-					setShowText(true); // 新しいテキストを表示
+					setShowText(true);
 				}, 500);
 			} else {
 				setShowText(false);
@@ -114,29 +115,6 @@ function Prologue() {
 		}
 	};
 
-	// 誓約書表示コンポーネント
-	const renderContract = () => (
-		<motion.div
-			className="contract-wrapper"
-			initial={{ opacity: 0 }}
-			animate={{ opacity: isContractVisible ? 1 : 0 }} // OKを押されたらフェードアウト
-			transition={{ duration: 0.5 }}>
-			<h2>入社誓約書</h2>
-			<p>〇〇コンサルティングへ仲間入りするにあたり、下記に同意し署名してください。</p>
-			<p>1. クライアントの成功を第一に考え、常に努力し、最善の提案とサポートを提供します。どんな困難なミッションでも諦めることなく、挑み続けます。</p>
-			<p>2. 本ゲームは開発中でありバグが頻繁に出ることを理解しています。ゲームの改善のために積極的にフィードバックを行います。</p>
-			<p>3. 制作チームは必要に応じ自由にプレイデータを収集、活用することができます。</p>
-			<p>これらを踏まえ、私は誇りを持ってコンサルタントとしての道を進むことを誓います。</p>
-			<div className="signature-line">
-				<label htmlFor="signature">署名：</label>
-				<input type="text" id="signature" value={username} onChange={(e) => setUsername(e.target.value)} />
-			</div>
-			<button type="submit" onClick={handleSubmitName}>
-				OK
-			</button>
-		</motion.div>
-	);
-
 	const handleFinalClick = () => {
 		if (waitingForClick) {
 			navigate("/nextPage");
@@ -159,7 +137,7 @@ function Prologue() {
 				</motion.div>
 			)}
 
-			{currentPhase === "nameInput" && renderContract()}
+			{currentPhase === "nameInput" && <PrologueContractModal isVisible={isContractVisible} onSubmit={handleSubmitName} username={username} setUsername={setUsername} />}
 		</motion.div>
 	);
 }
