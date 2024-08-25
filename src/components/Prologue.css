@@ -1,0 +1,135 @@
+.prologue-screen-wrapper {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	overflow: hidden;
+	background-color: #000000;
+	opacity: 0;
+	transition: opacity 1s ease-in;
+}
+
+.fade-in {
+	opacity: 1;
+}
+
+.fade-out {
+	opacity: 0;
+}
+
+.prologue-background-layer {
+	z-index: 1;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-image: url("../assets/images/prologue_bg_01.webp");
+	background-size: 120%;
+	background-position: 50%;
+	overflow: hidden;
+}
+
+.contract-wrapper {
+	z-index: 3;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-20%, -50%);
+	width: 640px;
+	height: 840px;
+	background-color: #fefbf5;
+	background-image: url("https://www.transparenttextures.com/patterns/aged-paper.png"); /* ゲーム感のある紙テクスチャ */
+	padding: 60px;
+	box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.4);
+	text-align: left;
+	font-family: "Times New Roman", "Hiragino Mincho Pro", "MS Mincho", serif; /* 明朝体を指定 */
+	line-height: 1.8;
+	color: #4a4a4a;
+}
+
+.contract-wrapper h2 {
+	font-size: 2.2rem;
+	text-align: center;
+	color: #333;
+	margin-bottom: 30px;
+}
+
+.contract-wrapper p {
+	font-size: 1.2rem;
+	color: #333;
+	margin-bottom: 30px;
+}
+
+.signature-line {
+	display: flex;
+	align-items: center;
+	margin-top: 50px;
+}
+
+.signature-line label {
+	font-size: 1.2rem;
+	color: #333;
+	margin-right: 10px;
+}
+
+.signature-line input {
+	flex: 1;
+	padding: 10px;
+	font-size: 1.2rem;
+	border: 2px solid #d8d2c4;
+	border-radius: 4px;
+	background-color: rgba(255, 255, 255, 0.9);
+	box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.signature-line input::placeholder {
+	font-style: italic;
+	color: #bbb;
+}
+
+.contract-wrapper button {
+	display: block;
+	margin: 20px auto;
+	background-color: #585756;
+	color: white;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 4px;
+	font-size: 1.4rem;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.contract-wrapper button:hover {
+	background-color: #bab9b9;
+}
+
+.dialogue-area {
+	z-index: 2;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 10%;
+	padding: 10px;
+	background-color: rgba(0, 0, 0, 0.9);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	color: #ffffff;
+	transition: opacity 0.5s ease-in-out;
+}
+
+.dialogue-text {
+	opacity: 1;
+	color: #ffffff;
+	font-size: 1.5rem;
+	transition: opacity 0.5s ease-in-out;
+}
+
+.dialogue-text.fade-out {
+	opacity: 0;
+}
+
+.dialogue-text.fade-in {
+	opacity: 1;
+}

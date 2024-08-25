@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import "./GameFrame.css";
+import "./Frame.css";
 
-function GameFrame({ children }) {
+function Frame({ children }) {
 	const [scale, setScale] = useState(1);
 	const [offsetX, setOffsetX] = useState(0);
 	const [offsetY, setOffsetY] = useState(0);
@@ -51,4 +51,4 @@ function GameFrame({ children }) {
 	);
 }
 
-export default GameFrame;
+export default Frame;

@@ -8,20 +8,22 @@
 	align-items: center;
 	position: relative;
 	overflow: hidden; /* フレーム外の要素を隠す */
+	transition: opacity 1s ease; /* フェードアウト時間を1.5秒に設定し、背景色もトランジションさせる */
+	background-color: rgb(255, 255, 255); /* 初期の背景色を白に設定 */
 }
 
 /* 背景画像が表示されるフレーム内の要素 */
-.background-layer {
+.start-screen-background-layer {
 	z-index: 1;
 	position: absolute;
 	width: 100%;
 	height: 100%;
-	background-image: url("../assets/background/titlemenu_background.webp");
+	background-image: url("../assets/images/title_bg_01.webp");
 	background-size: auto 150%; /* 背景画像を縦方向にフィットさせる */
 	background-position: 10%;
 	background-repeat: no-repeat;
 	transform: scale(1.1); /* 初期状態で少しズームイン */
-	transition: transform 2s ease-out; /* 滑らかにズームアウト */
+	transition: transform 1s ease-out; /* 滑らかにズームアウト */
 	overflow: hidden; /* はみ出る部分を隠す */
 }
 
@@ -38,6 +40,11 @@
 	align-items: center; /* 垂直方向の中央揃え */
 	text-align: left;
 	background-color: rgba(5, 10, 103, 0.785); /* 半透明の黒背景 */
+}
+
+.fade-out {
+	opacity: 0; /* フェードアウト時の透明度 */
+	background-color: rgba(0, 0, 0, 0); /* フェードアウト時の背景色を透明にする */
 }
 
 .title-layer h1 {
@@ -79,4 +86,10 @@
 .continue-button:hover {
 	background-color: #1723f8;
 	transform: scale(1.05);
+}
+
+.continue-button:disabled {
+	background-color: grey; /* 非活性化時の背景色 */
+	cursor: not-allowed; /* 非活性化時のカーソル */
+	opacity: 0.5; /* 非活性化時の透明度 */
 }
