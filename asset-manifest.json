@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/CGame/0.0.2/static/css/main.0d4961f0.css",
-    "main.js": "/CGame/0.0.2/static/js/main.40274e9f.js",
-    "static/media/prologue_bg_01.webp": "/CGame/0.0.2/static/media/prologue_bg_01.512b26c15862e162e7ae.webp",
-    "static/media/title_bg_01.webp": "/CGame/0.0.2/static/media/title_bg_01.9540e7f19256c0dc4a8e.webp",
-    "index.html": "/CGame/0.0.2/index.html",
-    "main.0d4961f0.css.map": "/CGame/0.0.2/static/css/main.0d4961f0.css.map",
-    "main.40274e9f.js.map": "/CGame/0.0.2/static/js/main.40274e9f.js.map"
+    "main.css": "/CGame/static/css/main.ec5420bb.css",
+    "main.js": "/CGame/static/js/main.40274e9f.js",
+    "static/media/prologue_bg_01.webp": "/CGame/static/media/prologue_bg_01.512b26c15862e162e7ae.webp",
+    "static/media/title_bg_01.webp": "/CGame/static/media/title_bg_01.9540e7f19256c0dc4a8e.webp",
+    "index.html": "/CGame/index.html",
+    "main.ec5420bb.css.map": "/CGame/static/css/main.ec5420bb.css.map",
+    "main.40274e9f.js.map": "/CGame/static/js/main.40274e9f.js.map"
   },
   "entrypoints": [
-    "static/css/main.0d4961f0.css",
+    "static/css/main.ec5420bb.css",
     "static/js/main.40274e9f.js"
   ]
 }
