@@ -43,7 +43,7 @@ const dialogueTexts = {
 			delay: 3000
 		},
 		{
-			text: "でも、大丈夫。やるしかないんだ。気合を入れていこう。",
+			text: "でも、大丈夫。やるしかないんだ。気合いを入れていこう。",
 			autoProgress: false,
 			delay: 0
 		}

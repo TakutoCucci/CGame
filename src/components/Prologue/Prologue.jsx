@@ -6,6 +6,9 @@ import dialogueTexts from "../../data/prologue_dialogue";
 import "./Prologue.css";
 import PrologueContractModal from "./PrologueContractModal";
 
+// 遅延関数を定義
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
 function Prologue() {
 	const [currentPhase, setCurrentPhase] = useState("fadeIn");
 	const [dialogueIndex, setDialogueIndex] = useState(0);
@@ -22,7 +25,7 @@ function Prologue() {
 	const autoProgressTimeoutRef = useRef(null);
 
 	// ダイアログを次に進める処理
-	const handleNextDialogue = useCallback(() => {
+	const handleNextDialogue = useCallback(async () => {
 		if (autoProgressTimeoutRef.current) {
 			clearTimeout(autoProgressTimeoutRef.current);
 			autoProgressTimeoutRef.current = null;
@@ -31,24 +34,21 @@ function Prologue() {
 		if (currentPhase === "dialogue") {
 			if (dialogueIndex < dialogueTexts.prologue.length - 1) {
 				setShowText(false);
-				setTimeout(() => {
-					setDialogueIndex(dialogueIndex + 1);
-					setShowText(true);
-				}, 500);
+				await delay(500);
+				setDialogueIndex(dialogueIndex + 1);
+				setShowText(true);
 			} else {
 				setShowText(false);
-				setTimeout(() => {
-					setShowDialogueArea(false);
-					setCurrentPhase("nameInput");
-				}, 500);
+				await delay(500);
+				setShowDialogueArea(false);
+				setCurrentPhase("nameInput");
 			}
 		} else if (currentPhase === "afterNameDialogue") {
 			if (dialogueIndex < dialogueTexts.afterNameInput.length - 1) {
 				setShowText(false);
-				setTimeout(() => {
-					setDialogueIndex(dialogueIndex + 1);
-					setShowText(true);
-				}, 500);
+				await delay(500);
+				setDialogueIndex(dialogueIndex + 1);
+				setShowText(true);
 			} else {
 				setWaitingForClick(true);
 			}
@@ -57,14 +57,14 @@ function Prologue() {
 
 	// 初期フェーズの設定
 	useEffect(() => {
-		setTimeout(() => {
+		(async () => {
+			await delay(1000);
 			setCurrentPhase("dialogue");
 			setShowDialogueArea(true);
-			setTimeout(() => {
-				setShowText(true);
-				setDialogueLoaded(true);
-			}, 500);
-		}, 1000);
+			await delay(500);
+			setShowText(true);
+			setDialogueLoaded(true);
+		})();
 	}, []);
 
 	// ダイアログテキストのフェード表示・自動進行
@@ -74,12 +74,12 @@ function Prologue() {
 
 			const autoProgress = currentPhase === "dialogue" ? dialogueTexts.prologue[dialogueIndex].autoProgress : dialogueTexts.afterNameInput[dialogueIndex].autoProgress;
 
-			const delay = currentPhase === "dialogue" ? dialogueTexts.prologue[dialogueIndex].delay : dialogueTexts.afterNameInput[dialogueIndex].delay;
+			const delayTime = currentPhase === "dialogue" ? dialogueTexts.prologue[dialogueIndex].delay : dialogueTexts.afterNameInput[dialogueIndex].delay;
 
 			if (text) {
 				setDisplayedText(text);
 				if (autoProgress) {
-					autoProgressTimeoutRef.current = setTimeout(handleNextDialogue, delay);
+					autoProgressTimeoutRef.current = setTimeout(handleNextDialogue, delayTime);
 				}
 			}
 		}
@@ -95,23 +95,20 @@ function Prologue() {
 	}, []);
 
 	// 名前入力の処理
-	const handleSubmitName = (e) => {
+	const handleSubmitName = async (e) => {
 		e.preventDefault();
 		if (username.trim()) {
 			updateGameState({ playerName: username });
 			setIsContractVisible(false); // モーダルをフェードアウト
-			setTimeout(() => {
-				setShowDialogueArea(false);
-				setTimeout(() => {
-					setDialogueIndex(0);
-					setDisplayedText("");
-					setShowDialogueArea(true);
-					setTimeout(() => {
-						setShowText(true);
-						setCurrentPhase("afterNameDialogue");
-					}, 500);
-				}, 500);
-			}, 500); // モーダルが完全にフェードアウトした後にダイアログを表示
+			await delay(500);
+			setShowDialogueArea(false);
+			await delay(500);
+			setDialogueIndex(0);
+			setDisplayedText("");
+			setShowDialogueArea(true);
+			await delay(500);
+			setShowText(true);
+			setCurrentPhase("afterNameDialogue");
 		}
 	};
 
