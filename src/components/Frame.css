@@ -9,7 +9,7 @@ body {
 
 .game-frame-wrapper {
 	background-color: transparent;
-	border: 2px solid red; /*フレーム確認用 */
+	/*border: 2px solid red;*/ /*フレーム確認用 */
 }
 
 .game-frame-content {
