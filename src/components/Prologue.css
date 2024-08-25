@@ -4,16 +4,6 @@
 	position: relative;
 	overflow: hidden;
 	background-color: #000000;
-	opacity: 0;
-	transition: opacity 1s ease-in;
-}
-
-.fade-in {
-	opacity: 1;
-}
-
-.fade-out {
-	opacity: 0;
 }
 
 .prologue-background-layer {
@@ -36,11 +26,11 @@
 	width: 660px;
 	height: 880px;
 	background-color: #fefbf5;
-	background-image: url("https://www.transparenttextures.com/patterns/aged-paper.png"); /* ゲーム感のある紙テクスチャ */
+	background-image: url("https://www.transparenttextures.com/patterns/aged-paper.png");
 	padding: 65px 80px;
 	box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.4);
 	text-align: left;
-	font-family: "Times New Roman", "Hiragino Mincho Pro", "MS Mincho"; /* 明朝体を指定 */
+	font-family: "Times New Roman", "Hiragino Mincho Pro", "MS Mincho";
 	line-height: 1.6;
 	color: #4a4a4a;
 }
@@ -116,20 +106,9 @@
 	align-items: center;
 	text-align: center;
 	color: #ffffff;
-	transition: opacity 0.5s ease-in-out;
 }
 
 .dialogue-text {
-	opacity: 1;
 	color: #ffffff;
 	font-size: 2.5rem;
-	transition: opacity 0.5s ease-in-out;
-}
-
-.dialogue-text.fade-out {
-	opacity: 0;
-}
-
-.dialogue-text.fade-in {
-	opacity: 1;
 }

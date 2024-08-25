@@ -1,98 +1,85 @@
 import React, { useState, useEffect, useContext, useCallback, useRef } from "react";
 import { GameContext } from "../context/GameContext";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 import dialogueTexts from "../data/prologue_dialogue";
 import "./Prologue.css";
 
 function Prologue() {
-	// State Variables
-	const [fadeIn, setFadeIn] = useState(false); // 初期フェードイン制御
-	const [currentPhase, setCurrentPhase] = useState("fadeIn"); // 現在のフェーズ ("dialogue" または "nameInput")
-	const [dialogueIndex, setDialogueIndex] = useState(0); // 現在のダイアログのインデックス
-	const [waitingForClick, setWaitingForClick] = useState(false); // 次のページに進むクリック待ち
-	const [displayedText, setDisplayedText] = useState(""); // 表示されるテキスト
-	const [isTextFading, setIsTextFading] = useState(false); // テキストのフェード制御
-	const [isDialogueVisible, setIsDialogueVisible] = useState(false); // ダイアログの表示/非表示制御
-	const [dialogueLoaded, setDialogueLoaded] = useState(false); // ダイアログがロードされたかどうか
+	const [currentPhase, setCurrentPhase] = useState("fadeIn");
+	const [dialogueIndex, setDialogueIndex] = useState(0);
+	const [displayedText, setDisplayedText] = useState("");
+	const [showDialogueArea, setShowDialogueArea] = useState(false);
+	const [showText, setShowText] = useState(false);
+	const [waitingForClick, setWaitingForClick] = useState(false);
+	const [username, setUsername] = useState("");
+	const [dialogueLoaded, setDialogueLoaded] = useState(false);
+	const [isContractVisible, setIsContractVisible] = useState(true); // モーダルの表示管理
 
-	// GameContextとルーティングのフック
-	const { updateGameState } = useContext(GameContext); // プレイヤー名の更新に使用
-	const navigate = useNavigate(); // 次のページに移動するためのフック
-	const [username, setUsername] = useState(""); // 名前入力の状態管理
-
-	const autoProgressTimeoutRef = useRef(null); // 自動進行タイマーの参照
+	const { updateGameState } = useContext(GameContext);
+	const navigate = useNavigate();
+	const autoProgressTimeoutRef = useRef(null);
 
 	// ダイアログを次に進める処理
 	const handleNextDialogue = useCallback(() => {
-		// 自動進行タイマーをクリア
 		if (autoProgressTimeoutRef.current) {
 			clearTimeout(autoProgressTimeoutRef.current);
 			autoProgressTimeoutRef.current = null;
 		}
 
-		// ダイアログフェーズの処理
 		if (currentPhase === "dialogue") {
-			// ダイアログの終わりでなければ次に進む
 			if (dialogueIndex < dialogueTexts.prologue.length - 1) {
-				setIsTextFading(true);
+				setShowText(false); // テキストを一旦非表示にする
 				setTimeout(() => {
 					setDialogueIndex(dialogueIndex + 1);
-					setIsTextFading(false);
+					setShowText(true); // 新しいテキストを表示
 				}, 500);
 			} else {
-				// 名前入力フェーズに移行
-				setIsDialogueVisible(false);
+				setShowText(false);
 				setTimeout(() => {
+					setShowDialogueArea(false);
 					setCurrentPhase("nameInput");
 				}, 500);
 			}
 		} else if (currentPhase === "afterNameDialogue") {
-			// 名前入力後のダイアログ進行
 			if (dialogueIndex < dialogueTexts.afterNameInput.length - 1) {
-				setIsTextFading(true);
+				setShowText(false);
 				setTimeout(() => {
 					setDialogueIndex(dialogueIndex + 1);
-					setIsTextFading(false);
+					setShowText(true);
 				}, 500);
 			} else {
-				// 最後のダイアログ後、クリック待ちに移行
 				setWaitingForClick(true);
 			}
 		}
 	}, [currentPhase, dialogueIndex]);
 
-	// 初期フェードイン処理
+	// 初期フェーズの設定
 	useEffect(() => {
-		setTimeout(() => setFadeIn(true), 100);
-
-		const startDialogueTimer = setTimeout(() => {
+		setTimeout(() => {
 			setCurrentPhase("dialogue");
-			setIsDialogueVisible(true); // ダイアログ表示開始
-			setDialogueLoaded(true); // ダイアログがロードされたことを通知
+			setShowDialogueArea(true);
+			setTimeout(() => {
+				setShowText(true);
+				setDialogueLoaded(true);
+			}, 500);
 		}, 1000);
-
-		// クリーンアップ
-		return () => clearTimeout(startDialogueTimer);
 	}, []);
 
 	// ダイアログテキストのフェード表示・自動進行
 	useEffect(() => {
 		if ((currentPhase === "dialogue" || currentPhase === "afterNameDialogue") && dialogueLoaded) {
 			const text = currentPhase === "dialogue" ? dialogueTexts.prologue[dialogueIndex].text : dialogueTexts.afterNameInput[dialogueIndex].text;
+
 			const autoProgress = currentPhase === "dialogue" ? dialogueTexts.prologue[dialogueIndex].autoProgress : dialogueTexts.afterNameInput[dialogueIndex].autoProgress;
+
 			const delay = currentPhase === "dialogue" ? dialogueTexts.prologue[dialogueIndex].delay : dialogueTexts.afterNameInput[dialogueIndex].delay;
 
 			if (text) {
-				setIsTextFading(true);
-				setTimeout(() => {
-					setDisplayedText(text);
-					setIsTextFading(false);
-
-					// 自動進行が有効な場合、指定時間後に次のダイアログに進む
-					if (autoProgress) {
-						autoProgressTimeoutRef.current = setTimeout(handleNextDialogue, delay);
-					}
-				}, 500); // テキストフェード後に進行
+				setDisplayedText(text);
+				if (autoProgress) {
+					autoProgressTimeoutRef.current = setTimeout(handleNextDialogue, delay);
+				}
 			}
 		}
 	}, [dialogueIndex, currentPhase, dialogueLoaded, handleNextDialogue]);
@@ -111,18 +98,29 @@ function Prologue() {
 		e.preventDefault();
 		if (username.trim()) {
 			updateGameState({ playerName: username });
-			setIsDialogueVisible(false); // 名前入力前にダイアログを非表示
+			setIsContractVisible(false); // モーダルをフェードアウト
 			setTimeout(() => {
-				setCurrentPhase("afterNameDialogue");
-				setDialogueIndex(0);
-				setIsDialogueVisible(true); // 名前入力後にダイアログを再表示
-			}, 500);
+				setShowDialogueArea(false);
+				setTimeout(() => {
+					setDialogueIndex(0);
+					setDisplayedText("");
+					setShowDialogueArea(true);
+					setTimeout(() => {
+						setShowText(true);
+						setCurrentPhase("afterNameDialogue");
+					}, 500);
+				}, 500);
+			}, 500); // モーダルが完全にフェードアウトした後にダイアログを表示
 		}
 	};
 
 	// 誓約書表示コンポーネント
 	const renderContract = () => (
-		<div className="contract-wrapper">
+		<motion.div
+			className="contract-wrapper"
+			initial={{ opacity: 0 }}
+			animate={{ opacity: isContractVisible ? 1 : 0 }} // OKを押されたらフェードアウト
+			transition={{ duration: 0.5 }}>
 			<h2>入社誓約書</h2>
 			<p>〇〇コンサルティングへ仲間入りするにあたり、下記に同意し署名してください。</p>
 			<p>1. クライアントの成功を第一に考え、常に努力し、最善の提案とサポートを提供します。どんな困難なミッションでも諦めることなく、挑み続けます。</p>
@@ -136,32 +134,33 @@ function Prologue() {
 			<button type="submit" onClick={handleSubmitName}>
 				OK
 			</button>
-		</div>
+		</motion.div>
 	);
 
-	// ダイアログ終了後のクリック処理
 	const handleFinalClick = () => {
 		if (waitingForClick) {
 			navigate("/nextPage");
 		} else {
-			handleNextDialogue(); // 手動で次に進む
+			handleNextDialogue();
 		}
 	};
 
 	return (
-		<div className={`prologue-screen-wrapper ${fadeIn ? "fade-in" : ""}`} onClick={handleFinalClick}>
+		<motion.div className="prologue-screen-wrapper" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }} onClick={handleFinalClick}>
 			<div className="prologue-background-layer"></div>
 
-			{/* ダイアログエリアの表示・非表示 */}
-			<div className={`dialogue-area ${isDialogueVisible ? "fade-in" : "fade-out"}`}>
-				<div className={`dialogue-text ${isTextFading ? "fade-out" : "fade-in"}`}>
-					<p>{displayedText}</p>
-				</div>
-			</div>
+			{showDialogueArea && (
+				<motion.div className="dialogue-area" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }}>
+					{showText && (
+						<motion.div className="dialogue-text" key={dialogueIndex} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }}>
+							<p>{displayedText}</p>
+						</motion.div>
+					)}
+				</motion.div>
+			)}
 
-			{/* 名前入力フェーズ */}
 			{currentPhase === "nameInput" && renderContract()}
-		</div>
+		</motion.div>
 	);
 }
 

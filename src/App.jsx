@@ -8,8 +8,6 @@ import Prologue from "./components/Prologue";
 function App() {
 	return (
 		<GameProvider>
-			{" "}
-			{/* GameProvider で全体をラップ */}
 			<Router basename="/CGame">
 				<Frame>
 					<Routes>

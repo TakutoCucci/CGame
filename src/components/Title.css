@@ -42,11 +42,6 @@
 	background-color: rgba(5, 10, 103, 0.785); /* 半透明の黒背景 */
 }
 
-.fade-out {
-	opacity: 0; /* フェードアウト時の透明度 */
-	background-color: rgba(0, 0, 0, 0); /* フェードアウト時の背景色を透明にする */
-}
-
 .title-layer h1 {
 	font-size: 6rem;
 	font-family: "Roboto Slab", serif;
