@@ -10,7 +10,7 @@ function App() {
 		<GameProvider>
 			{" "}
 			{/* GameProvider で全体をラップ */}
-			<Router>
+			<Router basename="/CGame">
 				<Frame>
 					<Routes>
 						<Route path="/" element={<Title />} />

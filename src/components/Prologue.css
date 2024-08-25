@@ -33,15 +33,15 @@
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	width: 640px;
-	height: 840px;
+	width: 660px;
+	height: 880px;
 	background-color: #fefbf5;
 	background-image: url("https://www.transparenttextures.com/patterns/aged-paper.png"); /* ゲーム感のある紙テクスチャ */
-	padding: 60px;
+	padding: 65px 80px;
 	box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.4);
 	text-align: left;
 	font-family: "Times New Roman", "Hiragino Mincho Pro", "MS Mincho"; /* 明朝体を指定 */
-	line-height: 1.8;
+	line-height: 1.6;
 	color: #4a4a4a;
 }
 
@@ -53,9 +53,9 @@
 }
 
 .contract-wrapper p {
-	font-size: 1.2rem;
+	font-size: 1.6rem;
 	color: #333;
-	margin-bottom: 30px;
+	margin-bottom: 15px;
 }
 
 .signature-line {
@@ -65,7 +65,7 @@
 }
 
 .signature-line label {
-	font-size: 1.2rem;
+	font-size: 1.6rem;
 	color: #333;
 	margin-right: 10px;
 }
@@ -73,7 +73,7 @@
 .signature-line input {
 	flex: 1;
 	padding: 10px;
-	font-size: 1.2rem;
+	font-size: 1.6rem;
 	border: 2px solid #d8d2c4;
 	border-radius: 4px;
 	background-color: rgba(255, 255, 255, 0.9);
@@ -87,13 +87,13 @@
 
 .contract-wrapper button {
 	display: block;
-	margin: 20px auto;
+	margin: 30px auto;
 	background-color: #585756;
 	color: white;
 	padding: 10px 20px;
 	border: none;
 	border-radius: 4px;
-	font-size: 1.4rem;
+	font-size: 2rem;
 	cursor: pointer;
 	transition: background-color 0.3s ease;
 }
@@ -108,7 +108,7 @@
 	bottom: 0;
 	left: 0;
 	width: 100%;
-	height: 10%;
+	height: 15%;
 	padding: 10px;
 	background-color: rgba(0, 0, 0, 0.9);
 	display: flex;
@@ -122,7 +122,7 @@
 .dialogue-text {
 	opacity: 1;
 	color: #ffffff;
-	font-size: 1.5rem;
+	font-size: 2.5rem;
 	transition: opacity 0.5s ease-in-out;
 }
 
