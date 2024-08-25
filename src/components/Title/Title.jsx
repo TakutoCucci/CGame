@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import "./Title.css";
@@ -7,11 +7,18 @@ function StartScreen({ onStartNewGame, onContinueGame, hasSavedGame }) {
 	const navigate = useNavigate();
 	const [isFadingOut, setIsFadingOut] = useState(false);
 
+	useEffect(() => {
+		let timer;
+		if (isFadingOut) {
+			timer = setTimeout(() => {
+				navigate("/prologue");
+			}, 1500);
+		}
+		return () => clearTimeout(timer);
+	}, [isFadingOut, navigate]);
+
 	const handleStartClick = () => {
-		setIsFadingOut(true); // フェードアウトを開始
-		setTimeout(() => {
-			navigate("/prologue"); // 0.5秒後にページ遷移
-		}, 1500); // アニメーションの時間と合わせる
+		setIsFadingOut(true);
 	};
 
 	return (
