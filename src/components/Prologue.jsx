@@ -133,7 +133,7 @@ function Prologue() {
 			<p>これらを踏まえ、私は誇りを持ってコンサルタントとしての道を進むことを誓います。</p>
 			<div className="signature-line">
 				<label htmlFor="signature">署名：</label>
-				<input type="text" id="signature" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="ここに名前を入力" />
+				<input type="text" id="signature" value={username} onChange={(e) => setUsername(e.target.value)} />
 			</div>
 			<button type="submit" onClick={handleSubmitName}>
 				OK

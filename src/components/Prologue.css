@@ -32,7 +32,7 @@
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	transform: translate(-20%, -50%);
+	transform: translate(-50%, -50%);
 	width: 640px;
 	height: 840px;
 	background-color: #fefbf5;
@@ -40,7 +40,7 @@
 	padding: 60px;
 	box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.4);
 	text-align: left;
-	font-family: "Times New Roman", "Hiragino Mincho Pro", "MS Mincho", serif; /* 明朝体を指定 */
+	font-family: "Times New Roman", "Hiragino Mincho Pro", "MS Mincho"; /* 明朝体を指定 */
 	line-height: 1.8;
 	color: #4a4a4a;
 }
