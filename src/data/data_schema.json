@@ -1,0 +1,180 @@
+{
+	"gameId": "d2345f5d-f234-45d1-856c-f2a67d7b1e90",
+	"players": [
+		{
+			"playerId": 1,
+			"name": "John Doe",
+			"rank": "Consultant",
+			"stamina": 80,
+			"motivation": 4,
+			"stress": 10,
+			"workLifeBalance": 0,
+			"skills": {
+				"problemSolving": 75,
+				"communication": 60,
+				"leadership": 50,
+				"facilitation": 40,
+				"presentation": 55,
+				"documentation": 65,
+				"research": 70
+			},
+			"experiencePoints": {
+				"intellect": 120,
+				"mentalStrength": 100,
+				"communication": 90,
+				"focus": 80,
+				"creativity": 85,
+				"businessKnowledge": 95,
+				"itFundamentals": 70
+			},
+			"reputation": {
+				"internal": 85,
+				"external": 80
+			},
+			"trust": {
+				"client": 75,
+				"team": 70
+			},
+			"projects": [
+				{
+					"projectId": 101,
+					"projectName": "Digital Transformation",
+					"client": "ABC Corp",
+					"clientId": 201,
+					"industry": "IT",
+					"role": "Team Lead",
+					"duration": "6 months",
+					"outcome": "Success",
+					"revenueGenerated": 5000000,
+					"difficultyLevel": "High",
+					"clientSatisfaction": 4.5,
+					"teamMembers": [
+						{
+							"teamMemberId": 301,
+							"name": "Jane Smith",
+							"role": "Consultant",
+							"performanceRating": 4.2
+						},
+						{
+							"teamMemberId": 302,
+							"name": "Mark Johnson",
+							"role": "Analyst",
+							"performanceRating": 3.8
+						}
+					],
+					"skillsGained": {
+						"problemSolving": 5,
+						"communication": 3,
+						"leadership": 7
+					},
+					"riskManagement": {
+						"risksIdentified": 3,
+						"risksMitigated": 3
+					}
+				}
+			]
+		}
+	],
+	"skills": [
+		{
+			"playerId": 1,
+			"coreSkills": {
+				"problemSolving": 75,
+				"facilitation": 40,
+				"presentation": 55,
+				"documentation": 65,
+				"research": 70
+			},
+			"projectSkills": {
+				"leadership": 50,
+				"projectPlanning": 60,
+				"projectManagement": 65,
+				"riskManagement": 55
+			},
+			"knowledgeSkills": {
+				"industryKnowledge": 70,
+				"businessProcessKnowledge": 60,
+				"itKnowledge": 55
+			}
+		}
+	],
+	"projects": [
+		{
+			"projectId": 101,
+			"projectName": "Digital Transformation",
+			"client": {
+				"clientId": 201,
+				"name": "ABC Corp",
+				"satisfaction": 4.5
+			},
+			"industry": "IT",
+			"role": "Team Lead",
+			"duration": "6 months",
+			"outcome": "Success",
+			"revenueGenerated": 5000000,
+			"teamMembers": [
+				{
+					"teamMemberId": 301,
+					"name": "Jane Smith",
+					"role": "Consultant",
+					"performanceRating": 4.2
+				},
+				{
+					"teamMemberId": 302,
+					"name": "Mark Johnson",
+					"role": "Analyst",
+					"performanceRating": 3.8
+				}
+			],
+			"riskManagement": {
+				"risksIdentified": 3,
+				"risksMitigated": 3
+			}
+		}
+	],
+	"teamMembers": [
+		{
+			"teamMemberId": 301,
+			"name": "Jane Smith",
+			"role": "Consultant",
+			"skills": {
+				"problemSolving": 65,
+				"communication": 70,
+				"leadership": 50
+			},
+			"performanceRating": 4.2,
+			"motivation": 4,
+			"stress": 15
+		},
+		{
+			"teamMemberId": 302,
+			"name": "Mark Johnson",
+			"role": "Analyst",
+			"skills": {
+				"research": 75,
+				"documentation": 55,
+				"communication": 60
+			},
+			"performanceRating": 3.8,
+			"motivation": 3,
+			"stress": 20
+		}
+	],
+	"clients": [
+		{
+			"clientId": 201,
+			"name": "ABC Corp",
+			"industry": "IT",
+			"satisfaction": 4.5,
+			"trust": 75,
+			"projects": [
+				{
+					"projectId": 101,
+					"projectName": "Digital Transformation",
+					"outcome": "Success",
+					"revenueGenerated": 5000000
+				}
+			]
+		}
+	]
+}

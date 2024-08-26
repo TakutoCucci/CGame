@@ -114,7 +114,7 @@ function Prologue() {
 
 	const handleFinalClick = () => {
 		if (waitingForClick) {
-			navigate("/nextPage");
+			navigate("/game");
 		} else {
 			handleNextDialogue();
 		}

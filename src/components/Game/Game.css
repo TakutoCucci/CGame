@@ -1,0 +1,80 @@
+/* メインゲーム画面のラッパースタイル */
+.game-screen-wrapper {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	overflow: hidden;
+	background-color: #000000;
+}
+
+/* 背景レイヤースタイル */
+.game-background-layer {
+	z-index: 1;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-image: url("../../assets/images/background_office.webp");
+	background-size: 120%;
+	background-position: 50%;
+	overflow: hidden;
+}
+
+/* status-containerのスタイル */
+.status-container {
+	display: flex;
+	align-items: flex-end; /* 要素をコンテナの下部に配置 */
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	padding: 20px;
+	background-color: rgba(185, 198, 240, 0.9);
+}
+
+/* MotivationIconのスタイル */
+.motivation-icon-container {
+	transform: scale(0.8);
+	flex: 0 1 150px; /* 固定幅を設定 */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+/* ゲージを縦に並べるラッパー */
+.gauge-wrapper {
+	display: flex;
+	flex-direction: column; /* 縦に並べる */
+	justify-content: space-between;
+	align-items: center;
+	margin-left: 20px; /* アイコンとの間に余白を追加 */
+}
+
+/* ゲージのスタイル */
+.stamina-gauge-container,
+.worklifebalance-gauge-container {
+	width: 100%;
+	margin: 10px 0;
+}
+
+/* StaminaGaugeの幅 */
+.stamina-gauge-container {
+	max-width: 300px; /* 最大幅を300pxに制限 */
+}
+
+/* WorkLifeBalanceGaugeの幅 */
+.worklifebalance-gauge-container {
+	max-width: 300px; /* 最大幅を300pxに制限 */
+}
+
+/* ゲームのボタンを調整 */
+.devControl {
+	position: absolute;
+	bottom: 0;
+}
+
+/* ゲームのボタンを調整 */
+.game-background-layer button {
+	margin: 10px; /* ボタンの周りに余白を追加 */
+	padding: 10px 20px; /* ボタンサイズを大きく */
+	font-size: 16px; /* テキストサイズを大きく */
+}
