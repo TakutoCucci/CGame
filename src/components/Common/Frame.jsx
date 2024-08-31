@@ -28,7 +28,6 @@ function frameReducer(state, action) {
 }
 
 function Frame({ children }) {
-	// useReducerフックを使用して状態管理
 	const [state, dispatch] = useReducer(frameReducer, initialState);
 
 	useEffect(() => {
@@ -46,7 +45,6 @@ function Frame({ children }) {
 			const newOffsetX = (windowWidth - frameWidth * newScale) / 2;
 			const newOffsetY = (windowHeight - frameHeight * newScale) / 2;
 
-			// dispatchで状態更新
 			dispatch({
 				type: "SET_SCALE",
 				payload: { scale: newScale, offsetX: newOffsetX, offsetY: newOffsetY }
@@ -54,15 +52,12 @@ function Frame({ children }) {
 			dispatch({ type: "SET_READY", payload: true });
 		};
 
-		// 初回実行とリサイズイベントリスナーの設定
 		handleResize();
 		window.addEventListener("resize", handleResize);
 
-		// クリーンアップ処理
 		return () => window.removeEventListener("resize", handleResize);
 	}, []);
 
-	// isReadyがfalseの場合は何も描画しない
 	if (!state.isReady) {
 		return null;
 	}
@@ -80,8 +75,22 @@ function Frame({ children }) {
 				top: 0,
 				left: 0,
 				transformOrigin: "top left"
+				// backgroundColor: "lightgray", // デバッグ用の背景色
+				// overflow: "visible", // コンテンツが切り取られないようにする
+				// border: "2px solid red" // デバッグ用の境界線
 			}}>
-			<div className="game-frame-content">{children}</div>
+			<div
+				className="game-frame-content"
+				// style={
+				// 	{
+				// 		// border: "2px solid blue", // デバッグ用の境界線
+				// 		// height: "100%", // コンテンツが親要素にフィットするように
+				// 		// overflow: "visible" // 必要に応じて、コンテンツが隠れないようにする
+				// 	}
+				// }
+			>
+				{children}
+			</div>
 		</motion.div>
 	);
 }

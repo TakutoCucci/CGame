@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import "./Title.css";
 
-function StartScreen({ onStartNewGame, onContinueGame, hasSavedGame }) {
-	const navigate = useNavigate();
+function Title({ onNewGameClick, hasSavedGame, onContinueGameClick }) {
 	const [isFadingOut, setIsFadingOut] = useState(false);
+
+	hasSavedGame = true; //デバッグ用
 
 	useEffect(() => {
 		let timer;
 		if (isFadingOut) {
 			timer = setTimeout(() => {
-				navigate("/prologue");
+				onNewGameClick(); // シーンをプロローグに変更
 			}, 1500);
 		}
 		return () => clearTimeout(timer);
-	}, [isFadingOut, navigate]);
+	}, [isFadingOut, onNewGameClick]);
 
 	const handleStartClick = () => {
 		setIsFadingOut(true);
@@ -31,7 +31,7 @@ function StartScreen({ onStartNewGame, onContinueGame, hasSavedGame }) {
 				<button onClick={handleStartClick} className="start-button">
 					Start New
 				</button>
-				<button onClick={hasSavedGame ? onContinueGame : null} className="continue-button" disabled={!hasSavedGame}>
+				<button onClick={hasSavedGame ? onContinueGameClick : null} className="continue-button" disabled={!hasSavedGame}>
 					Continue
 				</button>
 			</div>
@@ -39,4 +39,4 @@ function StartScreen({ onStartNewGame, onContinueGame, hasSavedGame }) {
 	);
 }
 
-export default StartScreen;
+export default Title;

@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext, useCallback, useRef } from "react";
 import { GameContext } from "../../context/GameContext";
-import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import dialogueTexts from "../../data/prologue_dialogue";
 import "./Prologue.css";
@@ -9,7 +8,7 @@ import PrologueContractModal from "./PrologueContractModal";
 // 遅延関数を定義
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-function Prologue() {
+function Prologue({ onPrologueFinish }) {
 	const [currentPhase, setCurrentPhase] = useState("fadeIn");
 	const [dialogueIndex, setDialogueIndex] = useState(0);
 	const [displayedText, setDisplayedText] = useState("");
@@ -21,7 +20,6 @@ function Prologue() {
 	const [isContractVisible, setIsContractVisible] = useState(true);
 
 	const { updateGameState } = useContext(GameContext);
-	const navigate = useNavigate();
 	const autoProgressTimeoutRef = useRef(null);
 
 	// ダイアログを次に進める処理
@@ -114,7 +112,7 @@ function Prologue() {
 
 	const handleFinalClick = () => {
 		if (waitingForClick) {
-			navigate("/game");
+			onPrologueFinish();
 		} else {
 			handleNextDialogue();
 		}
