@@ -5,7 +5,6 @@ import dialogueTexts from "../../data/prologue_dialogue";
 import "./Prologue.css";
 import PrologueContractModal from "./PrologueContractModal";
 
-// 遅延関数を定義
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 function Prologue({ onPrologueFinish }) {
@@ -22,7 +21,6 @@ function Prologue({ onPrologueFinish }) {
 	const { updateGameState } = useContext(GameContext);
 	const autoProgressTimeoutRef = useRef(null);
 
-	// ダイアログを次に進める処理
 	const handleNextDialogue = useCallback(async () => {
 		if (autoProgressTimeoutRef.current) {
 			clearTimeout(autoProgressTimeoutRef.current);
@@ -53,7 +51,6 @@ function Prologue({ onPrologueFinish }) {
 		}
 	}, [currentPhase, dialogueIndex]);
 
-	// 初期フェーズの設定
 	useEffect(() => {
 		(async () => {
 			await delay(1000);
@@ -65,13 +62,10 @@ function Prologue({ onPrologueFinish }) {
 		})();
 	}, []);
 
-	// ダイアログテキストのフェード表示・自動進行
 	useEffect(() => {
 		if ((currentPhase === "dialogue" || currentPhase === "afterNameDialogue") && dialogueLoaded) {
 			const text = currentPhase === "dialogue" ? dialogueTexts.prologue[dialogueIndex].text : dialogueTexts.afterNameInput[dialogueIndex].text;
-
 			const autoProgress = currentPhase === "dialogue" ? dialogueTexts.prologue[dialogueIndex].autoProgress : dialogueTexts.afterNameInput[dialogueIndex].autoProgress;
-
 			const delayTime = currentPhase === "dialogue" ? dialogueTexts.prologue[dialogueIndex].delay : dialogueTexts.afterNameInput[dialogueIndex].delay;
 
 			if (text) {
@@ -83,7 +77,6 @@ function Prologue({ onPrologueFinish }) {
 		}
 	}, [dialogueIndex, currentPhase, dialogueLoaded, handleNextDialogue]);
 
-	// クリーンアップ処理：コンポーネントのアンマウント時にタイマーをクリア
 	useEffect(() => {
 		return () => {
 			if (autoProgressTimeoutRef.current) {
@@ -92,12 +85,11 @@ function Prologue({ onPrologueFinish }) {
 		};
 	}, []);
 
-	// 名前入力の処理
 	const handleSubmitName = async (e) => {
 		e.preventDefault();
 		if (username.trim()) {
 			updateGameState({ playerName: username });
-			setIsContractVisible(false); // モーダルをフェードアウト
+			setIsContractVisible(false);
 			await delay(500);
 			setShowDialogueArea(false);
 			await delay(500);
@@ -110,7 +102,8 @@ function Prologue({ onPrologueFinish }) {
 		}
 	};
 
-	const handleFinalClick = () => {
+	const handleClick = () => {
+		console.log("clicked");
 		if (waitingForClick) {
 			onPrologueFinish();
 		} else {
@@ -119,7 +112,7 @@ function Prologue({ onPrologueFinish }) {
 	};
 
 	return (
-		<motion.div className="prologue-screen-wrapper" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }} onClick={handleFinalClick}>
+		<motion.div className="prologue-screen-wrapper" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }} onClick={handleClick}>
 			<div className="prologue-background-layer"></div>
 
 			{showDialogueArea && (

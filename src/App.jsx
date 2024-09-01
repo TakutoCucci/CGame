@@ -46,7 +46,6 @@ function SceneManager({ currentScene, setCurrentScene }) {
 	};
 
 	return (
-		// DevNote：この部分はシーンルートマッピングデータとして管理できるようにしたい
 		<>
 			{/* Title シーン: ゲームのタイトル画面 */}
 			{currentScene === "title" && <Title onNewGameClick={() => changeScene("prologue")} onContinueGameClick={() => changeScene("game")} />}
@@ -55,6 +54,7 @@ function SceneManager({ currentScene, setCurrentScene }) {
 			{/* Game シーン: メインのゲーム画面 */}
 			{currentScene === "game" && <Game />}
 		</>
+		// DevNote：この部分はシーンルートマッピングデータとして管理できるようにしたい
 	);
 }
 

@@ -24,7 +24,7 @@
 	display: flex;
 	align-items: flex-end; /* 要素をコンテナの下部に配置 */
 	position: fixed;
-	top: 0;
+	top: 20%;
 	left: 0;
 	width: 100%;
 	padding: 20px;

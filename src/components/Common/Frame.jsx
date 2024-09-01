@@ -2,15 +2,14 @@ import React, { useReducer, useEffect } from "react";
 import { motion } from "framer-motion";
 import "./Frame.css";
 
-// 初期状態の定義
+// フレームのスケール、オフセット、準備完了状態を管理するための初期値を設定
 const initialState = {
-	scale: 1,
-	offsetX: 0,
-	offsetY: 0,
-	isReady: false
+	scale: 1, // フレームのスケール倍率
+	offsetX: 0, // X軸のオフセット
+	offsetY: 0, // Y軸のオフセット
+	isReady: false // フレームの初期化が完了したかどうかを示すフラグ
 };
 
-// reducer関数の定義
 function frameReducer(state, action) {
 	switch (action.type) {
 		case "SET_SCALE":
@@ -75,22 +74,8 @@ function Frame({ children }) {
 				top: 0,
 				left: 0,
 				transformOrigin: "top left"
-				// backgroundColor: "lightgray", // デバッグ用の背景色
-				// overflow: "visible", // コンテンツが切り取られないようにする
-				// border: "2px solid red" // デバッグ用の境界線
 			}}>
-			<div
-				className="game-frame-content"
-				// style={
-				// 	{
-				// 		// border: "2px solid blue", // デバッグ用の境界線
-				// 		// height: "100%", // コンテンツが親要素にフィットするように
-				// 		// overflow: "visible" // 必要に応じて、コンテンツが隠れないようにする
-				// 	}
-				// }
-			>
-				{children}
-			</div>
+			<div className="game-frame-content">{children}</div>
 		</motion.div>
 	);
 }
