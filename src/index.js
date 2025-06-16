@@ -6,8 +6,4 @@ import App from "./App";
 const rootElement = document.getElementById("root");
 const root = ReactDOM.createRoot(rootElement); // createRootを使用
 
-root.render(
-	<React.StrictMode>
-		<App />
-	</React.StrictMode>
-);
+root.render(<App />);
